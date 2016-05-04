@@ -11,3 +11,6 @@ typings/
 www/js/
 www/css/
 www/lib/
+
+bld/
+bin/

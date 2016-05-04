@@ -57,4 +57,5 @@
     <splash src="resources/ios/splash/Default@2x~iphone.png" height="960" width="640" />
     <splash src="resources/ios/splash/Default~iphone.png" height="480" width="320" />
   </platform>
+  <preference name="windows-target-version" value="8.1" />
 </widget>
