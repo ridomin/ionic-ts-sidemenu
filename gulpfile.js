@@ -8,10 +8,11 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+    sass: ['./scss/**/*.scss'],
+    tsc: ['./app/**/*.ts']
 };
 
-gulp.task('default', ['sass','scripts']);
+gulp.task('default', ['sass','tsc']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -27,7 +28,8 @@ gulp.task('sass', function(done) {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.sass, ['sass']);
 });
 
 gulp.task('install', ['git-check'], function() {
@@ -50,7 +52,7 @@ gulp.task('git-check', function(done) {
   done();
 });
 
-gulp.task('scripts', function() {
+gulp.task('tsc', function() {
   var ts = require('gulp-typescript');
   var tsProject = ts.createProject('tsconfig.json');
 	var tsResult = tsProject.src('app')  
