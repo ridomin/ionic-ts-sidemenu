@@ -17,7 +17,9 @@
     "typings": "^0.8.1"
   },
   "scripts": {
-    "postinstall": "node_modules/.bin/typings install"
+    "bower": "node_modules/.bin/bower install",
+    "typings": "node_modules/.bin/typings install",
+    "postinstall": "npm run typings && npm run bower"
   },
   "cordovaPlugins": [
     "cordova-plugin-device",
