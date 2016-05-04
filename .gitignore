@@ -6,6 +6,8 @@ platforms/
 plugins/
 
 .vscode/
+.vs/
 typings/
 www/js/
 www/css/
+www/lib/
