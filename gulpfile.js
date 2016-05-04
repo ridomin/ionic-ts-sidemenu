@@ -11,7 +11,7 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass','scripts']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -48,4 +48,13 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+gulp.task('scripts', function() {
+  var ts = require('gulp-typescript');
+  var tsProject = ts.createProject('tsconfig.json');
+	var tsResult = tsProject.src('app')  
+		.pipe(ts(tsProject));
+	
+	return tsResult.js.pipe(gulp.dest('www/js/'));
 });
