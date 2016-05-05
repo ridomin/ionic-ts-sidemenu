@@ -5,12 +5,13 @@ var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
-var sh = require('shelljs');
 
 var paths = {
     sass: ['./scss/**/*.scss'],
     tsc: ['./app/**/*.ts']
 };
+
+
 
 gulp.task('default', ['sass','tsc']);
 
@@ -33,11 +34,21 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('tsc', function() {
+gulp.task('tsc', function() {    
+  var sourcemaps = require("gulp-sourcemaps");
   var ts = require('gulp-typescript');
   var tsProject = ts.createProject('tsconfig.json');
-	var tsResult = tsProject.src('app')  
-		.pipe(ts(tsProject));
-	
-	return tsResult.js.pipe(gulp.dest('www/js/'));
+	return tsProject
+    .src('app')
+    .pipe(sourcemaps.init())      
+		.pipe(ts(tsProject))
+    .js
+    .pipe(sourcemaps.write('./', 
+      {
+        includeContent:true, 
+        sourceRoot: function(file) {
+          return file.cwd + '\\js';
+        }          
+      }))
+	  .pipe(gulp.dest('www/js/'));
 });

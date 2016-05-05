@@ -12,6 +12,7 @@
         "typings/main.d.ts",
         "www/lib",
         "platforms",
-        "bld"
+        "bld",
+        ".vscode"
       ]
 }
